@@ -7,6 +7,7 @@ public partial class Player : MonoBehaviour
     public enum State
     {
         Idle,
-        Move
+        Move,
+        Die
     }
 }

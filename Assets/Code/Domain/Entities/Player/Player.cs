@@ -1,10 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public partial class Player : MonoBehaviour
 {
@@ -15,8 +13,9 @@ public partial class Player : MonoBehaviour
     private const string ANIMATION_RENDERER_SELECTED = "Selected";
     [SerializeField]
     private Animator entityAnimator;
-    private const string ANIMATION_ENTITY_IDLE = "Entitiy_Idle";
-    private const string ANIMATION_ENTITY_MOVE = "Entitiy_Move";
+    private const string ANIMATION_ENTITY_IDLE = "Entity_Idle";
+    private const string ANIMATION_ENTITY_MOVE = "Entity_Move";
+    private const string ANIMATION_ENTITY_DIE = "Entity_Die";
     [Space]
     [SerializeField]
     private SpriteRenderer spriteRenderer;
@@ -28,18 +27,22 @@ public partial class Player : MonoBehaviour
     public bool IsSelected => _status.IsSelected;
     public InputModel<Vector2> MoveInput { get; private set; } = new InputModel<Vector2>();
     public Animator EntityAnimator => entityAnimator;
+    public StageManager StageManager => _stageManager;
 
     private PlayerStatus _status;
     private List<PlayerBaseState> _finiteStates = new List<PlayerBaseState>()
     {
         new Idle(),
-        new Move()
+        new Move(),
+        new Die()
     };
     private PlayerBaseState _currentState;
     private GameManager _gameManager;
+    private StageManager _stageManager;
     private WeaponHolder _weaponHolder;
     private Rigidbody2D _rigidbody2D;
     private bool _isTakingDamage;
+    private bool _isDead = false;
 
     private void Awake()
     {
@@ -49,8 +52,8 @@ public partial class Player : MonoBehaviour
 
         ClearInputActions();
 
-        if (IsSelected) Select();
-        else Deselect();
+        //if (IsSelected) Select();
+        //else Deselect();
     }
 
     private void Start()
@@ -60,6 +63,9 @@ public partial class Player : MonoBehaviour
         ChangeState(State.Idle);
 
         _gameManager = GameObject.FindObjectOfType<GameManager>();
+        _stageManager = GameObject.FindObjectOfType<StageManager>();
+
+        if (_gameManager == null) return;
         _gameManager.AddPlayer(this);
     }
 
@@ -148,6 +154,15 @@ public partial class Player : MonoBehaviour
 
     internal void ReceiveDamage(Vector3 position)
     {
+        if(_isDead) return;
+
+        if (!_status.ImMonster)
+        {
+            _isDead = true;
+            ChangeState(State.Die);
+            return;
+        }
+
         if (_isTakingDamage) return;
 
         TryToDropWeapon();
@@ -204,7 +219,6 @@ public partial class Player : MonoBehaviour
 
         Vector2 direction = WeaponUtils.GetNormalizedDirection(this.transform, attackPosition);
         direction *= 2;
-        Debug.Log(direction);
         _rigidbody2D.AddForce(-direction, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(.2f);
