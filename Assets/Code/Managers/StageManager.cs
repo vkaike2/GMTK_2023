@@ -10,6 +10,8 @@ public class StageManager : MonoBehaviour
     private int stageNumber;
     [SerializeField]
     private Sprite winConditionSprite;
+    [SerializeField]
+    private WinCondition winConditionWeapon;
 
     [Header("CONFIGURATION")]
     [SerializeField]
@@ -20,10 +22,10 @@ public class StageManager : MonoBehaviour
 
     public int StageNumber => stageNumber;
     public Sprite WinConditionSprite => winConditionSprite;
+    public WinCondition WinConditionWeapon { get => winConditionWeapon; set => winConditionWeapon = value; }
 
     private GameManager _gameManager;
     private SceneTransition _sceneTransiton;
-    
 
     private void Awake()
     {
@@ -42,17 +44,17 @@ public class StageManager : MonoBehaviour
 
     private void LoadNextStage()
     {
-        if(nextStageName == null)
-        {
-            Debug.Log("win game - lol");
-            return;
-        }
-
         SceneManager.LoadScene(nextStageName);
     }
 
     private void StartGame()
     {
         _gameManager.GetSelectedPlayer().Select();
+    }
+
+    public enum WinCondition
+    {
+        Sword,
+        Bow
     }
 }

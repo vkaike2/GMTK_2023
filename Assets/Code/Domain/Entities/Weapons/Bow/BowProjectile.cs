@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BowProjectile : MonoBehaviour
+public class BowProjectile : Projectile
 {
     [Header("SPECIFIC CONFIGURATIONS")]
     [SerializeField]
@@ -42,6 +42,11 @@ public class BowProjectile : MonoBehaviour
         this.transform.rotation = rotation;
     }
 
+    public override void KillIt()
+    {
+        StartCoroutine(TriggerDieAnimation());
+    }
+
     private IEnumerator WaitThenDie()
     {
         yield return new WaitForSeconds(lifeTime);
@@ -58,7 +63,7 @@ public class BowProjectile : MonoBehaviour
 
             if (player.GetInstanceID() == _player.GetInstanceID()) return;
 
-            player.ReceiveDamage(this.transform.position);
+            player.ReceiveDamage(this.transform.position, StageManager.WinCondition.Bow);
         }
 
         StartCoroutine(TriggerDieAnimation());
@@ -74,4 +79,6 @@ public class BowProjectile : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         Destroy(this.gameObject);
     }
+
+
 }

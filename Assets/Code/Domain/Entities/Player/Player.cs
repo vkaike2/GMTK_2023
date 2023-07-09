@@ -152,11 +152,11 @@ public partial class Player : MonoBehaviour
         TryToDropWeapon();
     }
 
-    internal void ReceiveDamage(Vector3 position)
+    internal void ReceiveDamage(Vector3 position, StageManager.WinCondition weapon)
     {
         if(_isDead) return;
 
-        if (!_status.ImMonster)
+        if (!_status.ImMonster && _stageManager.WinConditionWeapon == weapon)
         {
             _isDead = true;
             ChangeState(State.Die);

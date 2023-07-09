@@ -5,7 +5,7 @@ public class WeaponHolder : MonoBehaviour
 {
     [Header("CONFIGURATIONS")]
     [SerializeField]
-    private bool hasWeapon;
+    private Weapon currentWeapon;
 
     [Header("COMPONENTS")]
     [SerializeField]
@@ -15,8 +15,7 @@ public class WeaponHolder : MonoBehaviour
 
     private PlayerStatus _status;
 
-    public Weapon CurrentWeapon { get; private set; } = null;
-
+    public Weapon CurrentWeapon { get => currentWeapon; private set => currentWeapon = value; }
     private void Awake()
     {
         _status = GetComponent<PlayerStatus>();

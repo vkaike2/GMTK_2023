@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1660614965323910139}
   - component: {fileID: 1565255774251882266}
   - component: {fileID: 4823042659233945806}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 986106168504430291}
   - component: {fileID: 2354062995408186167}
   - component: {fileID: 1997602716756262148}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bow Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.013574123, y: 0}

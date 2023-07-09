@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class SwordSlash : MonoBehaviour
+public class SwordSlash : Projectile
 {
     [Header("CONFIGURATIONS")]
     [SerializeField]
@@ -28,6 +28,11 @@ public class SwordSlash : MonoBehaviour
         _rigidbody2D.velocity = WeaponUtils.GetMouseNormalizedDirection(this.transform) * speed;
     }
 
+    public override void KillIt()
+    {
+        Destroy(gameObject);
+    }
+
     private IEnumerator WaitThenDie()
     {
         yield return new WaitForSeconds(lifeTime);
@@ -42,7 +47,7 @@ public class SwordSlash : MonoBehaviour
 
             if (player.GetInstanceID() == _player.GetInstanceID()) return;
 
-            player.ReceiveDamage(this.transform.position);
+            player.ReceiveDamage(this.transform.position, StageManager.WinCondition.Sword);
         }
     }
 }

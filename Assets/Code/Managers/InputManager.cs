@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,16 +11,34 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private GameManager gameManager;
 
+    private bool _isGameStarted = false;
+    private StageManager _stageManager;
+
+    private void Start()
+    {
+        _stageManager = GameObject.FindObjectOfType<StageManager>();
+
+        _stageManager.OnStartGame.AddListener(StartGame);
+    }
+
+    private void StartGame()
+    {
+        _isGameStarted = true;
+    }
+
     public void OnMoveInput(InputAction.CallbackContext context)
     {
+        if (!_isGameStarted) return;
+
         Player player =  gameManager.GetSelectedPlayer();
         if (player == null) return;
-
         player.OnMoveInput(context);
     }
 
     public void OnInteraction(InputAction.CallbackContext context)
     {
+        if (!_isGameStarted) return;
+
         Player player = gameManager.GetSelectedPlayer();
         if (player == null) return;
 
@@ -28,6 +47,8 @@ public class InputManager : MonoBehaviour
 
     public void OnRightMouseButton(InputAction.CallbackContext context)
     {
+        if (!_isGameStarted) return;
+
         Player player = gameManager.GetSelectedPlayer();
         if (player == null) return;
 

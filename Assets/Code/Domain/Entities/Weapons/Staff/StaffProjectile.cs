@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-public class StaffProjectile : MonoBehaviour
+public class StaffProjectile : Projectile
 {
     [Header("CONFIGURATIONS")]
     [SerializeField]
@@ -31,6 +31,11 @@ public class StaffProjectile : MonoBehaviour
 
         InstantiateVFX();
         SetProjectileDirection(speed);
+    }
+
+    public override void KillIt()
+    {
+        DestroyProjectile();
     }
 
     private void SetProjectileDirection(float speed)

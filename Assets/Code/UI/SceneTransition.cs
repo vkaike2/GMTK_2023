@@ -29,7 +29,6 @@ public class SceneTransition : MonoBehaviour
 
         if (cameFromOtherScene)
         {
-            Debug.Log("TEST");
             StartStage();
         }
 
