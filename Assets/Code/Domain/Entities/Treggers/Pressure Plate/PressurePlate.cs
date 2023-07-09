@@ -14,6 +14,10 @@ public class PressurePlate : MonoBehaviour
     private const string ANIMATION_UP = "Pressure Plate_Up";
     private const string ANIMATION_DOWN = "Pressure Plate_Down";
 
+    [Header("AUDIO")]
+    [SerializeField]
+    private AudioMaster audioMaster;
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,6 +25,7 @@ public class PressurePlate : MonoBehaviour
         if (player == null) return;
 
         animator.Play(ANIMATION_DOWN);
+        audioMaster.Play(AudioMaster.AudioType.Footstep);
         OnPressurePlate.Invoke(true);
     }
 

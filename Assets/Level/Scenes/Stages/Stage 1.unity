@@ -2731,17 +2731,33 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5857561620793803337, guid: 1c666d9b6b1cfe64c8a4d6326e62a903, type: 3}
-      propertyPath: _nextStage
-      value: 
-      objectReference: {fileID: 102900000, guid: 0071c37b8e9f86e43af7c9fe2f646671, type: 3}
+      propertyPath: stageNumber
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5857561620793803337, guid: 1c666d9b6b1cfe64c8a4d6326e62a903, type: 3}
       propertyPath: nextStageName
       value: Stage 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5857561620793803337, guid: 1c666d9b6b1cfe64c8a4d6326e62a903, type: 3}
+      propertyPath: winConditionSprite
+      value: 
+      objectReference: {fileID: 1470640315, guid: 7929488e85e9d674eb7a610680ca8505, type: 3}
+    - target: {fileID: 5857561620793803337, guid: 1c666d9b6b1cfe64c8a4d6326e62a903, type: 3}
+      propertyPath: winConditionWeapon
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5857561620793803338, guid: 1c666d9b6b1cfe64c8a4d6326e62a903, type: 3}
       propertyPath: m_Name
       value: Stage Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 7544548627815526243, guid: 1c666d9b6b1cfe64c8a4d6326e62a903, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544548627815526243, guid: 1c666d9b6b1cfe64c8a4d6326e62a903, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f5281a1eee9ee444795217d84a52ce8a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c666d9b6b1cfe64c8a4d6326e62a903, type: 3}
 --- !u!1001 &6966448040586868458
@@ -3053,6 +3069,10 @@ PrefabInstance:
     - target: {fileID: 6803033038772222939, guid: 80499700ec7d9e34fb2ef0695cac5185, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041022277746269960, guid: 80499700ec7d9e34fb2ef0695cac5185, type: 3}
+      propertyPath: pitch.min
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80499700ec7d9e34fb2ef0695cac5185, type: 3}

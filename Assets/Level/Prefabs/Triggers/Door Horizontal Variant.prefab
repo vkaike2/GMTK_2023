@@ -61,7 +61,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 557341414033301117, guid: 8eb9b40ff60d2644c8a544b28e9f0a97, type: 3}
       propertyPath: m_Name
-      value: Door Horizontal
+      value: Door Horizontal Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 557341414236747352, guid: 8eb9b40ff60d2644c8a544b28e9f0a97, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.32
       objectReference: {fileID: 0}
     - target: {fileID: 557341414236747359, guid: 8eb9b40ff60d2644c8a544b28e9f0a97, type: 3}
       propertyPath: m_Size.x

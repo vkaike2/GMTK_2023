@@ -16,6 +16,8 @@ public class Staff : Weapon
     {
         if (_projectile != null) return;
 
+        audioMaster.Play(AudioMaster.AudioType.WeaponAttack);
+
         _projectile = Instantiate(projectilePrefab, spawnPosition);
         _projectile.Initialize(_gameManager, projectileSpeed);
         _projectile.transform.parent = null;

@@ -13,10 +13,13 @@ public class Door : MonoBehaviour
     private const string ANIMATION_OPEN = "Open";
     private const string ANIMATION_CLOSE = "Close";
 
-
     [Header("CONFIGURATIONS")]
     [SerializeField]
     private bool isClosed = true;
+
+    [Header("AUDIO")]
+    [SerializeField]
+    private AudioMaster audioMaster;
 
     private void Awake()
     {
@@ -26,12 +29,14 @@ public class Door : MonoBehaviour
     public void OnTrigger(bool value)
     {
         isClosed = !value;
+        audioMaster.Play(AudioMaster.AudioType.Trigger);
         TriggerAnimation();
     }
 
     public void OnToggleDoor()
     {
         isClosed = !isClosed;
+        audioMaster.Play(AudioMaster.AudioType.Trigger);
         TriggerAnimation();
     }
 

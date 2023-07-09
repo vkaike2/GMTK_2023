@@ -27,6 +27,10 @@ public class StageInformationUI : MonoBehaviour
     [SerializeField]
     private float lifeTime = 5f;
 
+    [Header("AUDIO")]
+    [SerializeField]
+    private AudioMaster audioMaster;
+
     private Animator _animator;
     private const string ANIMATION_MAIN_HIDE = "Stage Information_Hide";
 
@@ -56,6 +60,8 @@ public class StageInformationUI : MonoBehaviour
 
     private void StartAnimations()
     {
+        audioMaster.PlayMusic();
+
         StartCoroutine(AnimatingDetails());
         StartCoroutine(WaitThenHide());
     }

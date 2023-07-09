@@ -6,6 +6,7 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField]
     private bool isEquiped;
 
+    
     [Header("COMPONENTS")]
     [SerializeField]
     private Animator genericAnimator;
@@ -21,6 +22,10 @@ public abstract class Weapon : MonoBehaviour
     [Space]
     [SerializeField]
     protected Transform spawnPosition;
+
+    [Header("AUDIO")]
+    [SerializeField]
+    protected AudioMaster audioMaster;
 
     protected CircleCollider2D _pickupCollider;
     protected GameManager _gameManager;
@@ -46,6 +51,8 @@ public abstract class Weapon : MonoBehaviour
     public virtual void Equip()
     {
         this.transform.localScale = Vector3.one;
+
+        audioMaster.Play(AudioMaster.AudioType.PickUPItem);
 
         genericAnimator.Play(ANIMATION_GENERIC_IDLE);
         _pickupCollider.enabled = false;

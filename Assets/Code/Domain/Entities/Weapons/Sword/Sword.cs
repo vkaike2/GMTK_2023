@@ -17,9 +17,12 @@ public class Sword : Weapon
         _swordSlash = Instantiate(prefab, spawnPosition);
         _swordSlash.Initialize(_gameManager.GetSelectedPlayer());
         _swordSlash.transform.parent = null;
+
+        audioMaster.PlayRandomPitch(AudioMaster.AudioType.WeaponAttack);
+
         StartCoroutine(AttackAnimation());
     }
-
+    
     private IEnumerator AttackAnimation()
     {
         FlipSword();

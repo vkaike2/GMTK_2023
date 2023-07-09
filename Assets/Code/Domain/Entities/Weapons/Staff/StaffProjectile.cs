@@ -45,6 +45,8 @@ public class StaffProjectile : Projectile
 
     private void InstantiateVFX()
     {
+        audioMaster.PlayInstance(AudioMaster.AudioType.ProjectileDestoyed);
+
         ParticleSystem vfx = Instantiate(vfxParticle, this.transform);
         vfx.transform.parent = null;
     }

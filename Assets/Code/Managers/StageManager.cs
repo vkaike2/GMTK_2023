@@ -27,8 +27,12 @@ public class StageManager : MonoBehaviour
     private GameManager _gameManager;
     private SceneTransition _sceneTransiton;
 
+    private AudioMaster _audioMaster;
+
     private void Awake()
     {
+        _audioMaster = GetComponent<AudioMaster>();
+
         if (string.IsNullOrEmpty(nextStageName)) throw new Exception("nextStageName can't be null");
 
         OnStartGame.AddListener(StartGame);
@@ -49,6 +53,7 @@ public class StageManager : MonoBehaviour
 
     private void StartGame()
     {
+        _audioMaster.PlayMusic();
         _gameManager.GetSelectedPlayer().Select();
     }
 

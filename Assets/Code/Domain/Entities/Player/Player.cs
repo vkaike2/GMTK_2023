@@ -20,9 +20,15 @@ public partial class Player : MonoBehaviour
     [SerializeField]
     private SpriteRenderer spriteRenderer;
 
+    [Header("AUDIO")]
+    [SerializeField]
+    private AudioMaster audioMaster;
+
     [Header("UI")]
     [SerializeField]
     private SelectedArrowUI selectedArrowUI;
+    [SerializeField]
+    private Chat chat;
 
     public bool IsSelected => _status.IsSelected;
     public InputModel<Vector2> MoveInput { get; private set; } = new InputModel<Vector2>();
@@ -154,21 +160,39 @@ public partial class Player : MonoBehaviour
 
     internal void ReceiveDamage(Vector3 position, StageManager.WinCondition weapon)
     {
-        if(_isDead) return;
+        if (_isDead) return;
 
-        if (!_status.ImMonster && _stageManager.WinConditionWeapon == weapon)
+        if (_isTakingDamage) return;
+
+        audioMaster.Play(AudioMaster.AudioType.ReceiveDamage);
+
+        if (!_status.ImMonster && ReceiveDamageOnHero(weapon))
         {
-            _isDead = true;
-            ChangeState(State.Die);
+            //ReceiveDamageOnHero(weapon);
             return;
         }
 
-        if (_isTakingDamage) return;
 
         TryToDropWeapon();
 
         StartCoroutine(TakeDamageAnimation());
         StartCoroutine(ApplyKnockback(position));
+    }
+
+    private bool ReceiveDamageOnHero(StageManager.WinCondition weapon)
+    {
+        if (_stageManager.WinConditionWeapon == weapon)
+        {
+            _isDead = true;
+            ChangeState(State.Die);
+            return true;
+        }
+        else
+        {
+            chat.ShowUp(_stageManager.WinConditionWeapon.ToString());
+
+            return false;
+        }
     }
 
     private void TryToDropWeapon()

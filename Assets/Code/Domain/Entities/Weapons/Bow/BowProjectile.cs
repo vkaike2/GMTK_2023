@@ -75,6 +75,8 @@ public class BowProjectile : Projectile
         direction *= 0.4f;
         _rigidbody2D.velocity = -direction;
 
+        audioMaster.PlayInstance(AudioMaster.AudioType.ProjectileDestoyed);
+
         animator.Play(ANIMATION_DIE);
         yield return new WaitForSeconds(0.2f);
         Destroy(this.gameObject);
