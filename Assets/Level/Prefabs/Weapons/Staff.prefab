@@ -324,6 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEquiped: 0
+  pickupCollider: {fileID: 5954052619132591950}
   genericAnimator: {fileID: 5954052620169991448}
   specificAnimator: {fileID: 5954052618619569375}
   _shadowGameObjbect: {fileID: 5954052620557754451}

@@ -6,15 +6,17 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField]
     private bool isEquiped;
 
-    
+
     [Header("COMPONENTS")]
+    [SerializeField]
+    protected CircleCollider2D pickupCollider;
     [SerializeField]
     private Animator genericAnimator;
     protected const string ANIMATION_GENERIC_IDLE = "Weapon_Idle";
     protected const string ANIMATION_GENERIC_SELECTED = "Weapon_Floating";
     [SerializeField]
     protected Animator specificAnimator;
-    protected const string ANIMATION_SPECIFIC_IDLE = "Idle";    
+    protected const string ANIMATION_SPECIFIC_IDLE = "Idle";
     protected const string ANIMATION_SPECIFIC_SELECTED = "Selected";
     [Space]
     [SerializeField]
@@ -27,7 +29,6 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField]
     protected AudioMaster audioMaster;
 
-    protected CircleCollider2D _pickupCollider;
     protected GameManager _gameManager;
 
     public bool IsEquiped { get => isEquiped; private set => isEquiped = value; }
@@ -35,10 +36,7 @@ public abstract class Weapon : MonoBehaviour
 
     private void Awake()
     {
-        _pickupCollider = gameObject.GetComponent<CircleCollider2D>();
-
-        if (isEquiped) Equip();
-        else Drop();
+        Drop();
     }
 
     protected void Start()
@@ -47,26 +45,28 @@ public abstract class Weapon : MonoBehaviour
     }
 
     public abstract void Attack();
-    
-    public virtual void Equip()
+
+    public virtual void Equip(bool playAudio = true)
     {
         this.transform.localScale = Vector3.one;
 
-        audioMaster.Play(AudioMaster.AudioType.PickUPItem);
+        if (playAudio)
+            audioMaster.Play(AudioMaster.AudioType.PickUPItem);
 
         genericAnimator.Play(ANIMATION_GENERIC_IDLE);
-        _pickupCollider.enabled = false;
+        pickupCollider.enabled = false;
         _shadowGameObjbect.SetActive(false);
     }
 
     public virtual void Drop()
     {
+        //Debug.Log("DROPED");
         this.transform.parent = null;
         this.transform.localScale = Vector3.one;
         this.transform.rotation = new Quaternion();
 
         genericAnimator.Play(ANIMATION_GENERIC_SELECTED);
-        _pickupCollider.enabled = true;
+        pickupCollider.enabled = true;
         _shadowGameObjbect.SetActive(true);
     }
 

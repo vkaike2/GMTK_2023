@@ -31,5 +31,4 @@ public class Sword : Weapon
     }
 
     private void FlipSword() => this.transform.localScale = new Vector3(1, -Mathf.Sign(this.transform.localScale.y), 1);
-
 }

@@ -1,0 +1,5 @@
+kill_my_hero:
+    - create a prefab variat for stage Manager
+    - create a wall prefab
+    - refactor how projectile colides with stuff
+    - make projectiles colide with wall (even sword)

@@ -49,5 +49,9 @@ public class SwordSlash : Projectile
 
             player.ReceiveDamage(this.transform.position, StageManager.WinCondition.Sword);
         }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

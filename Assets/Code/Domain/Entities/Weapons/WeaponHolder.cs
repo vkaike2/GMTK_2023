@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class WeaponHolder : MonoBehaviour
@@ -14,25 +15,35 @@ public class WeaponHolder : MonoBehaviour
     private Transform weaponTransform;
 
     private PlayerStatus _status;
+    private StageManager _stageManager;
 
     public Weapon CurrentWeapon { get => currentWeapon; private set => currentWeapon = value; }
     private void Awake()
     {
         _status = GetComponent<PlayerStatus>();
+
     }
+
+    private void Start()
+    {
+        _stageManager = GameObject.FindObjectOfType<StageManager>();
+        if (currentWeapon != null) SpawnWeapon();
+    }
+
+
 
     private void FixedUpdate()
     {
         RotateWeaponAroudPlayer();
     }
 
-    internal void EquipWeapon(Weapon weapon)
+    internal void EquipWeapon(Weapon weapon, bool playAudio = true)
     {
         weapon.transform.position = weaponTransform.position;
         weapon.transform.SetParent(weaponTransform);
         weapon.transform.rotation = new Quaternion();
 
-        weapon.Equip();
+        weapon.Equip(playAudio);
 
         CurrentWeapon = weapon;
     }
@@ -77,5 +88,17 @@ public class WeaponHolder : MonoBehaviour
             weaponTransform.localScale = new Vector3(1, 1, 1);
         }
     }
+
+    private void SpawnWeapon()
+    {
+        Weapon initialWeapon = Instantiate(currentWeapon, weaponTransform);
+        CurrentWeapon = initialWeapon;
+
+        _stageManager.OnStartGame.AddListener(() =>
+        {
+            EquipWeapon(CurrentWeapon, false);
+        });
+    }
+
 
 }
