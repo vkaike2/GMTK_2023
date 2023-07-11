@@ -99,5 +99,13 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.04
       objectReference: {fileID: 0}
+    - target: {fileID: 2786055721039401805, guid: 8eb9b40ff60d2644c8a544b28e9f0a97, type: 3}
+      propertyPath: models.Array.data[0].volume
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802345756367925627, guid: 8eb9b40ff60d2644c8a544b28e9f0a97, type: 3}
+      propertyPath: m_Volume
+      value: 0.728
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8eb9b40ff60d2644c8a544b28e9f0a97, type: 3}

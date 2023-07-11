@@ -295,7 +295,7 @@ MonoBehaviour:
   - name: Trigger
     audioClip: {fileID: 8300000, guid: 16a704f8c15ce7545a30e30a2836a909, type: 3}
     audioType: 5
-    volume: 1
+    volume: 0.4
   pitch:
     min: 0
     max: 0
@@ -312,7 +312,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 4003433310161709554, guid: 6338c8ec054eeb741977f7f2fd8c98cd, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.741
   m_Pitch: 1
   Loop: 0
   Mute: 0

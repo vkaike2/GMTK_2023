@@ -5,5 +5,6 @@ using UnityEngine;
 public enum CustomLayers : int
 {
     Weapon = 6,
-    Hitbox = 8
+    Hitbox = 8,
+    Door = 11
 }

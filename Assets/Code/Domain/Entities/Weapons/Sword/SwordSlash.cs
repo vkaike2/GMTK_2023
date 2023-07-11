@@ -49,7 +49,7 @@ public class SwordSlash : Projectile
 
             player.ReceiveDamage(this.transform.position, StageManager.WinCondition.Sword);
         }
-        else
+        if (collision.gameObject.layer == (int)CustomLayers.Door)
         {
             Destroy(this.gameObject);
         }

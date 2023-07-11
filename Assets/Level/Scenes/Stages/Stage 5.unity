@@ -6817,6 +6817,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1574935208950770398, guid: 30b784def88c39a4990edb9ed897a896, type: 3}
+      propertyPath: models.Array.data[0].volume
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3804792645166442478, guid: 30b784def88c39a4990edb9ed897a896, type: 3}
       propertyPath: m_Name
       value: Door Horizontal

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5204477048301814415}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3662104060584831421}
   - component: {fileID: 4274087764511680517}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall Horizontal Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3747021121972194222}
   - component: {fileID: 3708363147836052352}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpriteRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
